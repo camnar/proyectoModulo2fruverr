@@ -3,10 +3,12 @@ package com.example.fruver.config;
 import java.util.Arrays;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -40,5 +42,14 @@ public class MyConfig {
 
 	private Long getLongProperty(String key) {
 		return Long.valueOf(env.getProperty(key));
+	}
+	@Bean
+	   public ModelMapper modelMapper() {
+	      ModelMapper modelMapper = new ModelMapper();
+	      return modelMapper;
+	   }
+	@Bean
+	public BCryptPasswordEncoder getBCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder( );
 	}
 }
